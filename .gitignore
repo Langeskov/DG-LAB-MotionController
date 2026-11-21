@@ -1,0 +1,26 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/build
+/Motion-ml/
+/.kotlin/
+/.idea/deviceManager.xml
+# Python 生成物（pytest 缓存 / __pycache__ / 字节码）
+.pytest_cache/
+__pycache__/
+*.pyc
+*.apk
+# 内部项目记忆，不随仓库发布
+AGENTS.md

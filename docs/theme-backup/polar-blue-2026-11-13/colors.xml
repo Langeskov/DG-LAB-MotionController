@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- POLAR BLUE：深海蓝背景 + 冰蓝强调（与 Compose McColors 保持一致） -->
+    <color name="mc_background">#FF142C40</color>
+    <color name="mc_background_deep">#FF0E2233</color>
+    <color name="mc_surface">#FF19344A</color>
+    <color name="mc_surface_raised">#FF24445B</color>
+    <color name="mc_ice_blue">#FFA6E9F8</color>
+    <color name="mc_blue_accent">#FF62CDEB</color>
+    <color name="mc_danger">#FFF04452</color>
+    <color name="mc_emergency_black">#FF050506</color>
+</resources>

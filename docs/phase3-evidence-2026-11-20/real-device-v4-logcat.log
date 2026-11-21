@@ -1,0 +1,79 @@
+# Phase 3 真机 V4 链路 logcat 摘录（2026-11-20）
+
+环境：Redmi K90 PM（25102RKBEC）/ Android 17（API 37）/ DG-LAB APP 4.2.6（versionCode 62）/
+Coyote 3.0（COYOTE_030，真实 BLE 连接；用户确认接虚拟输出）。本 App 进程 PID 2615（APK 2026-11-20 22:21 构建）。
+targetId 与 clientId 在报告中脱敏。
+
+## 1. 真实 APP 接入 + devices.snapshot（22:36:01，clientId=f15105d5 脱敏）
+
+11-20 22:35:56.467 I/V4: 中继启动 host=127.0.0.1 port=9998 targetId=32b5349c connectionLostTimeout=120s
+11-20 22:35:56.468 I/V4: 中继就绪 bind=127.0.0.1:9998 targetId=32b5349c
+11-20 22:35:56.468 I/V4: APP 地址 ws://127.0.0.1:9998/?tid=32b5349c
+11-20 22:36:01.779 I/V4: WS 握手 UA=okhttp/3.14.9 Connection=Upgrade; close
+11-20 22:36:01.783 I/V4: APP 接入 clientId=f15105d5 targetId=32b5349c 总数=1
+11-20 22:36:01.784 I/V4: APP 接入 clientId=f15105d5
+11-20 22:36:01.793 I/V4: ← t=ev ev=devices.snapshot
+11-20 22:36:01.794 I/V4: devices.snapshot payload=[{"id":0,"slotId":"pVBWJ7Ve","name":"COYOTE","type":"COYOTE_030","props":{"power":0,"version":0,"label":0,"intensityA":0,"intensityB":0,"connectState":"connected","channelAStatus":0,"channelBStatus":0,"updateValue":"0"},"slotState":{"markLight":"yellow","hasDevice":true,"channelA":{"comfortLimit":{"mode":"complex","comfortMax":80,"absoluteMax":100,"overheat":false,"overheatPercent":0,"autoIncr":false,"autoIncrMax":20,"autoIncrScope":3,"totalIncr":0},"intensityMax":100,"isMuted":false,"warmUpScale":0},"channelB":{"comfortLimit":{"mode":"complex","comfortMax":80,"absoluteMax":100,"overheat":false,"overheatPercent":0,"autoIncr":false,"autoIncrMax":20,"autoIncrScope":3,"totalIncr":0},"intensityMax":100,"isMuted":false,"warmUpScale":0}}}]
+11-20 22:36:01.868 I/V4: → APP devices.get reqId=1 targets=1
+11-20 22:36:01.872 I/V4: ← t=resp reqId=1
+
+## 2. A/B 强度指令（t=3）+ 真实 slots.patch（22:37:00–02；人工接管 WALKING，target=10）
+
+11-20 22:37:00.769 I/V4: → APP device.op reqId=2 targets=1 t=3 c=0 v=2
+11-20 22:37:00.848 I/V4: device.op 响应 reqId=2 reason=completed
+11-20 22:37:01.069 I/V4: → APP device.op reqId=3 targets=1 t=3 c=1 v=8
+11-20 22:37:01.149 I/V4: device.op 响应 reqId=3 reason=completed
+11-20 22:37:01.349 I/V4: slots.patch payload=[{"slotId":"pVBWJ7Ve","props":{"intensityA":2,"intensityB":8}}]
+11-20 22:37:01.368 I/V4: → APP device.op reqId=4 targets=1 t=3 c=0 v=7
+11-20 22:37:01.448 I/V4: device.op 响应 reqId=4 reason=completed
+11-20 22:37:01.669 I/V4: → APP device.op reqId=5 targets=1 t=3 c=1 v=-1
+11-20 22:37:01.751 I/V4: device.op 响应 reqId=5 reason=completed
+11-20 22:37:01.969 I/V4: → APP device.op reqId=6 targets=1 t=3 c=0 v=-4
+11-20 22:37:02.051 I/V4: device.op 响应 reqId=6 reason=completed
+11-20 22:37:02.269 I/V4: → APP device.op reqId=7 targets=1 t=3 c=1 v=-4
+11-20 22:37:02.351 I/V4: device.op 响应 reqId=7 reason=completed
+11-20 22:37:02.568 I/V4: → APP device.op reqId=8 targets=1 t=3 c=0 v=1
+11-20 22:37:02.649 I/V4: device.op 响应 reqId=8 reason=completed
+11-20 22:37:02.769 I/V4: → APP device.op reqId=9 targets=1 t=3 c=1 v=1
+11-20 22:37:02.851 I/V4: device.op 响应 reqId=9 reason=completed
+
+## 3. 正常 STOP（22:37:16；A/B t=7 v=0）
+
+11-20 22:37:16.868 I/V4: → APP device.op reqId=57 targets=1 t=7 c=0 v=0
+11-20 22:37:16.952 I/V4: device.op 响应 reqId=57 reason=completed
+11-20 22:37:17.169 I/V4: → APP device.op reqId=58 targets=1 t=7 c=1 v=0
+11-20 22:37:17.250 I/V4: device.op 响应 reqId=58 reason=completed
+
+## 4. E-STOP（22:37:25；A/B 归零 + clear 三条命令分别回执）
+
+11-20 22:37:25.594 I/V4: 急停下发 A/B 归零 + clear（targets=1，queued=3）
+11-20 22:37:25.594 I/V4: 急停锁存：A/B 归零 + device.op.clear（需显式解除）
+11-20 22:37:25.595 I/Svc: EMERGENCY STOP（latch persisted; output zero + clear; device confirmation unavailable）
+11-20 22:37:25.603 I/V4: device.op 响应 reqId=59 reason=cleared          ← A 归零回执
+11-20 22:37:25.639 I/V4: device.op 响应 reqId=60 reason=cleared          ← B 归零回执
+11-20 22:37:25.640 I/V4: device.op 响应 reqId=61 reason=-                ← clear RPC 回执（无 reason）
+
+说明：真实 APP 对 t=7 v=0 返回 reason=cleared、对 device.op.clear 返回无 reason（空 result）。
+两者都属“成功语义”；三条全部 ACKED 后 estopAppAcked 才置位（Phase 3 语义修正）。
+
+## 5. E-STOP 复位（22:37:33–34；锁存清除，未重启控制）
+
+11-20 22:37:33.726 I/Svc: E-STOP RESET REQUESTED
+11-20 22:37:34.831 I/V4: 急停已解除（目标强度保持 0，需重新 setTargetIntensity）
+11-20 22:37:34.831 I/Svc: E-STOP RESET COMPLETE：锁存已清除，未启动控制；DEVICE STOP 仍为 UNVERIFIED（BLE 无回执），恢复 OPERATION 后保持 DISARMED，需操作员确认后再 START
+（复位前后 PID 均为 2615；未重建 Service/Relay/WebSocket；未发送新的非零强度）
+
+## 6. APP 断连（22:37:42；force-stop DG-LAB APP）
+
+11-20 22:37:42.766 I/V4: APP 断开 clientId=f15105d5 code=1006 reason=- remote=true
+11-20 22:37:42.766 I/V4: APP 全部断开：控制器归零、清空设备
+（断连后 controlAvailable=false；APP 端真实设备 BLE 同时断开，APP 重启后显示“无设备 请先连接设备”）
+
+## 7. APP 重新手动连接（22:32:14，同 build 早前记录；手动点“连接服务器”）
+
+11-20 22:32:14.804 E/ws2: 发起ws连接 -> {"id":"socket_v4","url":"ws://127.0.0.1:9998/?tid=32b5349c"}
+11-20 22:32:14.810 E/ws2: onOpen - id = socket_v4, 101, Web Socket Protocol Handshake
+11-20 22:32:14.812 E/webconsole: [INFO] [LocalSocketTransportV4] connection opened
+11-20 22:32:14.812 E/webconsole: [INFO] [LocalSocketTransportV4] assigned clientId: e29dab72
+11-20 22:32:14.814 E/webconsole: [INFO] [LocalSocketTransportV4] controller attached: 32b5349c
+（本地 relay 在后台时也能在 ~8ms 内完成 101 握手；客户端手动重连成功）

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- POLAR BLUE 终端：深蓝启动窗口（避免冷启动白闪）；状态栏/导航栏透明并由 Compose 绘制背景。 -->
+    <style name="Theme.MotionController" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/mc_background</item>
+        <item name="android:colorBackground">@color/mc_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+</resources>

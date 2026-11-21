@@ -1,0 +1,662 @@
+package com.motioncontroller.ui.i18n
+
+/**
+ * 英文文案（第二语言）：保留 UI V1 的设备丝印风格原文（大写短标签 + 完整说明句）。
+ *
+ * 注意：ControlModel / PreflightModel 相关条目与既有单测断言的英文标识保持逐字一致。
+ */
+object EnUiStrings : UiStrings {
+
+    // ───────────────────────── 通用 / 导航 ─────────────────────────
+    override val appName = "MOTION CONTROLLER"
+    override val brandSubtitle = "POLAR CONTROL SYSTEM"
+    override val navBack = "BACK"
+    override val cancel = "CANCEL"
+    override val reset = "RESET"
+    override val unknown = "UNKNOWN"
+    override val on = "ON"
+    override val off = "OFF"
+    override val yes = "YES"
+    override val no = "NO"
+    override val trueText = "TRUE"
+    override val falseText = "FALSE"
+    override val showDetails = "show details"
+    override val hideDetails = "hide details"
+
+    // ───────────────────────── 系统交互（Toast / 分享） ─────────────────────────
+    override val toastCopied = "copied"
+    override val toastNothingToCopy = "nothing to copy"
+    override val toastReturnToAutoRejected = "RETURN TO AUTO rejected: model data stale"
+    override val copyLabelAddress = "DG-LAB V4 address"
+    override val shareSubjectLogs = "MotionController logs"
+    override val shareSubjectDiagnostics = "MotionController diagnostic report"
+    override val shareChooserDiagnostics = "Export diagnostics"
+
+    // ───────────────────────── 三状态页面 ─────────────────────────
+    override val screenPreflight = "PRE-FLIGHT"
+    override val screenOperation = "OPERATION"
+    override val screenEngineering = "ENGINEERING"
+
+    // ───────────────────────── 启动动效 ─────────────────────────
+    override val bootInitializing = "INITIALIZING"
+    override val bootLinkEstablished = "LINK ESTABLISHED"
+    override val bootSystemReady = "SYSTEM READY"
+    override val bootStageProgress = "STAGE {0} / 03"
+    override val tapToSkip = "TAP TO SKIP"
+
+    // ───────────────────────── 连接模式 ─────────────────────────
+    override val modeSingleName = "SINGLE"
+    override val modeMultiName = "MULTI"
+    override val modeSingleDesc = "SINGLE MODE"
+    override val modeMultiDesc = "MULTI MODE"
+    override val modeHintLocal = "LOOPBACK 127.0.0.1"
+    override val modeHintLan = "LAN + QR"
+
+    // ───────────────────────── PRE-FLIGHT ─────────────────────────
+    override val versionLabel = "VERSION {0}"
+    override val connectionModeTitle = "CONNECTION MODE"
+    override val modeMultiLan = "MULTI · LAN"
+    override val modeSingleLocal = "SINGLE · LOCAL"
+    override val restartingRelay = "RESTARTING RELAY…"
+    override val markerRestarting = "RESTARTING"
+    override val markerActive = "ACTIVE"
+    override val markerSelect = "SELECT"
+    override val linkPanelTitle = "DG-LAB LINK"
+    override val tagLan = "LAN"
+    override val tagLocal = "LOCAL"
+    override val copyAddress = "COPY ADDRESS"
+    override val relayNotReady = "relay not ready"
+    override val showQr = "SHOW QR"
+    override val hideQr = "HIDE QR"
+    override val qrContentDescription = "DG-LAB V4 pairing QR code"
+    override val scanWithApp = "SCAN WITH DG-LAB APP"
+    override val qrUnavailableAddress = "QR unavailable — relay address not ready"
+    override val qrUnavailableEncode = "QR unavailable — payload could not be encoded"
+    override val addressNotRunning = "-- RELAY NOT RUNNING --"
+    override val preflightCheckTitle = "PRE-FLIGHT CHECK"
+    override val statusReady = "READY"
+    override val statusWaiting = "WAITING"
+    override val statusFail = "FAIL"
+    override val checksIncomplete = "PRE-FLIGHT CHECKS INCOMPLETE"
+    override val blockedWaitingFor = "WAITING FOR {0}: {1}"
+    override val criticalCheckFailed = "critical pre-flight check failed"
+    override val enterOperation = "ENTER OPERATION"
+    override val preflightFailed = "PRE-FLIGHT FAILED"
+    override val retry = "RETRY"
+    override val restartingEngine = "restarting engine…"
+
+    // ───────────────────────── 自检项（PreflightModel） ─────────────────────────
+    override val checkLocalService = "LOCAL SERVICE"
+    override val checkV4Relay = "V4 RELAY"
+    override val checkMotionModel = "MOTION MODEL"
+    override val checkScaler = "SCALER"
+    override val checkGnssSpeed = "GNSS SPEED"
+    override val checkDgLabApp = "DG-LAB APP"
+    override val checkDevice = "DEVICE"
+
+    // 自检详情
+    override val detailBindingService = "binding service…"
+    override val detailEngineFailedFallback = "engine failed"
+    override val detailStartingEngine = "starting engine…"
+    override val detailForegroundEngine = "foreground engine running"
+    override val detailEngineNotRunning = "engine not running"
+    override val detailWaitingEngine = "waiting for engine…"
+    override val detailRelayListening = "listening · tid {0}"
+    override val detailRelayNotListening = "relay not listening"
+    override val detailModelLoaded = "motion_encoder.onnx loaded"
+    override val detailLoadingModel = "loading model…"
+    override val detailScalerCalibrated = "normalization calibrated"
+    override val detailScalerInvalid = "scaler.json invalid — predictions untrustworthy"
+    override val detailLoadingScaler = "loading scaler…"
+    override val detailFixStale = "fix stale ({0}) — speed feature degraded"
+    override val detailNoFix = "no fix — speed feature degraded (accuracy −6.9pt)"
+    override val detailClientAttached = "client attached · {0}"
+    override val detailAppConnectHint = "open DG-LAB APP and connect to the address"
+    override val coyoteDevice = "coyote device"
+    override val detailDeviceConnectHint = "connect the coyote device in DG-LAB APP"
+
+    // ───────────────────────── 自检状态（CheckStatus） ─────────────────────────
+    override val statusPass = "PASS"
+    override val statusDisconnected = "DISCONNECTED"
+
+    // ───────────────────────── 控制状态机（ControlPhase） ─────────────────────────
+    override val phaseStandby = "STANDBY"
+    override val phaseStarting = "STARTING"
+    override val phaseStopping = "STOPPING"
+    override val phaseFault = "FAULT"
+
+    // ───────────────────────── 映射来源（MappingSource） ─────────────────────────
+    override val mappingSourceAuto = "AUTO"
+    override val manualOverride = "MANUAL OVERRIDE"
+
+    // ───────────────────────── 启动阻塞原因（ControlModel） ─────────────────────────
+    override val blockerEstopLatched = "E-STOP LATCHED — RESET REQUIRED"
+    override val blockerServiceStarting = "LOCAL SERVICE STARTING"
+    override val blockerServiceOffline = "LOCAL SERVICE OFFLINE"
+    override val blockerRelayOffline = "V4 RELAY OFFLINE"
+    override val blockerAppNotConnected = "DG-LAB APP NOT CONNECTED"
+    override val blockerDeviceNotConnected = "DEVICE NOT CONNECTED"
+
+    // ───────────────────────── 归还自动的阻塞原因 ─────────────────────────
+    override val autoBlockerModelOffline = "MODEL OFFLINE — STAY IN MANUAL"
+    override val autoBlockerNoResult = "NO MODEL RESULT — STAY IN MANUAL"
+    override val autoBlockerPaused = "RECOGNITION PAUSED — STAY IN MANUAL"
+    override val autoBlockerNotSettled = "MODEL NOT SETTLED — STAY IN MANUAL"
+    override val autoBlockerStale = "MODEL DATA STALE — STAY IN MANUAL"
+
+    // ───────────────────────── 速度（SpeedStatus） ─────────────────────────
+    override val speedLive = "LIVE"
+    override val speedStale = "STALE"
+    override val speedUnavailable = "UNAVAILABLE"
+    override val speedDetailLive = "GNSS LIVE"
+    override val speedDetailStale = "STALE FIX"
+    override val speedDetailUnavailable = "GNSS UNAVAILABLE"
+
+    // ───────────────────────── 运动类别（MotionClass） ─────────────────────────
+    override val motionStationary = "STATIONARY"
+    override val motionWalking = "WALKING"
+    override val motionCycling = "CYCLING"
+    override val motionCar = "CAR"
+    override val motionTrain = "TRAIN"
+    override val motionPending = "PENDING"
+    override val waitingForRecognition = "WAITING FOR RECOGNITION"
+
+    // ───────────────────────── OPERATION ─────────────────────────
+    override val warnRecognitionPausedTitle = "recognition paused — output forced to 0"
+    override val warnRecognitionPausedBody =
+        "No fresh inference result while armed (screen off / sensor paused). " +
+            "Control stays armed but muted until a new prediction arrives."
+    override val engineFaultTitle = "engine fault"
+    override val tagEstop = "E-STOP"
+    override val lampApp = "APP"
+    override val lampDev = "DEV"
+    override val tagAuto = "AUTO"
+    override val tagManual = "MANUAL"
+    override val groundSpeed = "ground speed"
+    override val fixActive = "FIX ACTIVE"
+    override val noFix = "NO FIX"
+    override val speedStaleNote = "Last valid fix is stale — value is NOT live speed."
+    override val speedUnavailableNote =
+        "GNSS unavailable — speed feature uses 0 (recognition accuracy reduced)."
+    override val motionMode = "motion mode"
+    override val controlAuthority = "control authority"
+    override val authorityAutoDesc = "Model recognition decides the effective motion mode and output mapping."
+    override val authorityManualDesc = "MANUAL OVERRIDE — model keeps running but cannot override your selection."
+    override val takeManualControl = "take manual control"
+    override val takeManualDisabledEstop = "control session suspended by e-stop"
+    override val takeManualArmedNote = "applies immediately · output stays slew-limited"
+    override val returnToAuto = "return to auto"
+    override val returnToAutoSubtitle = "model takes back control"
+    override val controlSuspendedEstop = "Control session suspended by E-STOP."
+    override val outputProfile = "output profile"
+    override val outBase = "base"
+    override val outOffset = "offset"
+    override val outTarget = "target"
+    override val outApplied = "applied"
+    override val sentEstApp = "SENT A {0} · EST A {1} · APP {2}"
+    override val outComputed = "computed"
+    override val computedValue = "{0}  = base {1} {2}"
+    override val outClamped = "clamped"
+    override val clampedValue = "{0}  (safety max {1})"
+    override val outMapping = "mapping"
+    override val sentTarget = "sent target"
+    override val appReported = "app reported"
+    override val manualOffsetLimit = "manual offset ±{0}"
+    override val outputLayersNote =
+        "COMPUTED is software math, SENT TARGET is the controller setpoint, " +
+            "APP REPORTED is what the DG-LAB app reports back. They are not interchangeable."
+    override val systemReadiness = "system readiness"
+    override val controlLink = "control link"
+    override val motionEngine = "motion engine"
+    override val safetyLimit = "safety max"
+    override val readinessScaler = "SCALER"
+    override val readinessGnss = "GNSS"
+    override val suspended = "SUSPENDED"
+    override val notReady = "NOT READY"
+    override val readinessRelay = "RELAY"
+    override val readinessApp = "APP"
+    override val readinessDevice = "DEVICE"
+    override val readinessModel = "MODEL"
+    override val controlEngine = "control engine"
+    override val startControl = "start control"
+    override val stopControl = "stop control"
+    override val startSubtitle = "output follows {0} mapping"
+    override val stopSubtitle = "normal stop · output returns to 0"
+    override val emergencyStop = "EMERGENCY STOP"
+    override val estopSubtitleOnline = "IMMEDIATE ZERO + CLEAR · ALWAYS AVAILABLE"
+    override val estopSubtitleOffline = "LINK OFFLINE — LOCAL LATCH ONLY"
+    override val estopLatched = "E-STOP LATCHED"
+    override val resetRequired = "RESET REQUIRED"
+    override val estopPhaseCommand = "command"
+    override val estopPhaseFrames = "frames"
+    override val estopPhaseAppAck = "app ack"
+    override val estopPhaseDevice = "device"
+    override val estopValueIssued = "issued"
+    override val estopValueQueued = "queued"
+    override val estopValueNotQueued = "not queued"
+    override val estopValueAcked = "acked ({0})"
+    override val estopValuePending = "pending"
+    override val estopValueUnverified = "unverified"
+    override val resetEstop = "reset e-stop"
+    override val resetEstopSubtitle = "clears latch only — requires new startup self-check"
+    override val resetEstopDisabledSubtitle = "service offline — cannot reset"
+    override val resetEstopDialogTitle = "Reset E-STOP?"
+    override val resetEstopDialogBody =
+        "This only clears the latch. Output stays at 0 and START CONTROL must be " +
+            "pressed explicitly. Confirm the device is safe and no output is active."
+
+    // ───────────────────────── E-STOP 全屏紧急模式 ─────────────────────────
+    override val emergencyTitle = "EMERGENCY STOP"
+    override val emergencyActivated = "EMERGENCY STOP ACTIVATED"
+    override val emergencyBorderTop = "/// EMERGENCY STOP /// EMERGENCY STOP ///"
+    override val emergencyBorderBottom = "/// E-STOP LATCHED /// RESET REQUIRED ///"
+    override val emergencySessionSuspended = "CONTROL SESSION SUSPENDED"
+    override val emergencySessionSuspendedBody =
+        "The safety latch is engaged. Normal control output is locked and cannot be started."
+    override val emergencyControlLocked = "NORMAL OPERATIONS LOCKED"
+    override val emergencyControlLockedBody =
+        "Start/stop, AUTO/MANUAL override, intensity, wave and output configuration are " +
+            "unavailable in emergency mode."
+    override val emergencyCommandChain = "STOP COMMAND CHAIN"
+    override val emergencyNodeCommand = "COMMAND"
+    override val emergencyNodeFrames = "FRAMES"
+    override val emergencyNodeAppAck = "APP ACK"
+    override val emergencyNodeDevice = "DEVICE"
+    override val emergencyStatusIssued = "ISSUED"
+    override val emergencyStatusQueued = "QUEUED"
+    override val emergencyStatusPending = "PENDING"
+    override val emergencyStatusAcked = "ACKED"
+    override val emergencyStatusFailed = "FAILED"
+    override val emergencyStatusNotSent = "NOT SENT"
+    override val emergencyStatusUnverified = "UNVERIFIED"
+    override val emergencyDeviceUnverified = "DEVICE STOP UNVERIFIED"
+    override val emergencyDeviceUnverifiedBody =
+        "This build has no BLE-level stop acknowledgement: an APP ACK does not prove the " +
+            "device physically stopped. Verify the device state yourself."
+    override val emergencyLinkStatus = "LINK STATUS"
+    override val emergencyLinkRelay = "RELAY"
+    override val emergencyLinkApp = "DG-LAB APP"
+    override val emergencyLinkDevice = "DEVICE"
+    override val emergencyLinkIntensity = "INTENSITY A · TARGET / EST / APP"
+    override val emergencyResetSection = "RESET"
+    override val emergencyResetHint =
+        "RESET E-STOP clears the latch only. No control output is restarted automatically."
+    override val emergencyResetBlocked = "RESET BLOCKED"
+    override val emergencyResetDialogTitle = "RESET EMERGENCY LATCH?"
+    override val emergencyResetDialogBody =
+        "The app re-issues the stop command, waits for the DG-LAB APP acknowledgement, then " +
+            "runs a startup self-check. It will NOT start control output. Device BLE confirmation " +
+            "is not available."
+    override val emergencyResetRequested = "RESET REQUESTED"
+    override val emergencyResetting = "RESETTING · RE-ISSUING STOP COMMAND"
+    override val emergencySelfChecking = "STARTUP SELF-CHECK"
+    override val emergencyResetFailed = "RESET FAILED"
+    override val emergencyResetRetry = "retry reset"
+    override val emergencyResetProgressNote = "The latch stays engaged until every step passes."
+    override val emergencyCannotLeave = "Emergency mode cannot be left before reset."
+    override val emergencyReissueStop = "re-issue stop command"
+    override val emergencyRetryRelay = "retry relay"
+    override val emergencyNoDeviceAck = "no BLE acknowledgement"
+    override val emergencyExitClearedTag = "E-STOP RELEASED"
+    override val emergencyExitClearedTitle = "E-STOP LATCH CLEARED"
+    override val emergencyExitClearedBody =
+        "CONTROL OUTPUT REMAINS DISARMED — it will not restart automatically."
+    override val emergencyExitReinitTag = "SYSTEM REINITIALIZING"
+    override val emergencyExitReinitTitle = "SYSTEM REINITIALIZING"
+    override val emergencyExitReinitBody =
+        "Checking the existing session. Services and handshakes are not restarted."
+    override val emergencyRestoredTag = "CONTROL SESSION RESTORED"
+    override val emergencyRestoredTitle = "CONTROL SESSION RESTORED"
+    override val emergencyRestoredBody = "Control remains DISARMED. Press START when ready."
+    override val recoveryCheckControlSession = "CONTROL SESSION"
+    override val recoveryControlDisarmedDetail = "Control is DISARMED"
+    override val recoveryControlActiveDetail = "Control is still active"
+    override val recoveryPassCount = "{0} / {1} PASSED"
+    override val recoverySessionNote = "Checking the existing session — no service restart or new handshake."
+    override val recoveryCheckingTag = "CHECKING"
+    override val resetCheckService = "LOCAL SERVICE"
+    override val resetCheckRelay = "V4 RELAY"
+    override val resetCheckAppLink = "APP LINK"
+    override val resetCheckDeviceLink = "DEVICE LINK"
+    override val resetCheckStopCommand = "STOP COMMAND"
+    override val resetCheckAppAck = "APP ACK"
+    override val resetCheckModel = "MOTION MODEL"
+    override val resetCheckScaler = "SCALER"
+    override val resetCheckDeviceConfirm = "DEVICE STOP"
+    override val resetFailServiceOffline =
+        "Local service is not running; a safe reset is impossible."
+    override val resetFailRelayOffline = "V4 relay is offline."
+    override val resetFailAppNotConnected =
+        "DG-LAB APP is not connected; the stop command cannot be delivered or acknowledged. " +
+            "The device may still be active — re-establish the link first."
+    override val resetFailDeviceNotConnected =
+        "Coyote device is not connected; the stop command cannot be confirmed. " +
+            "Reconnect the device first."
+    override val resetFailStopNotSent = "The stop command was not delivered to the link."
+    override val resetFailStopNotAcked =
+        "The DG-LAB APP did not acknowledge the stop command; reset aborted and the latch remains."
+    override val resetFailModelNotReady =
+        "Motion model is not ready; startup self-check failed."
+    override val resetFailScalerInvalid =
+        "Scaler normalization is invalid; startup self-check failed."
+    override val resetFailLinkReplaced =
+        "The relay/link changed during reset; reset aborted and the latch remains."
+    override val resetFailUnknown =
+        "Unexpected error in the reset flow; the latch remains engaged."
+    override val checkEstopRecovery = "E-STOP RECOVERY"
+    override val detailEstopRecoveryUnverified =
+        "Latch was cleared, but the device stop state cannot be verified over BLE. " +
+            "Confirm the device is inactive before starting control."
+
+    // ───────────────────────── 本地波形（WavePanel） ─────────────────────────
+    override val wavePanelTitle = "INTENSITY ENVELOPE"
+    override val wavePanelShortNote = "LOCAL ENVELOPE · NOT A DEVICE PULSE PROFILE"
+    override val wavePanelDesc =
+        "This device synthesizes the rhythm on top of the DG-LAB APP waveform; the protocol " +
+            "cannot switch APP waveforms. Choose a continuous waveform in the APP as the carrier."
+    override val waveStatusModulating = "MODULATING"
+    override val waveStatusEnabled = "ENABLED"
+    override val waveStatusOff = "OFF"
+    override val waveShapeFlat = "FLAT"
+    override val waveShapeSine = "SINE"
+    override val waveShapeTriangle = "TRIANGLE"
+    override val waveShapeSquare = "SQUARE"
+    override val waveShapeSawtooth = "SAWTOOTH"
+    override val waveShapeBurst = "BURST"
+    override val waveDurationContinuous = "CONTINUOUS"
+    override val waveDuration30 = "30 S"
+    override val waveDuration60 = "60 S"
+    override val waveDuration300 = "5 MIN"
+    override val waveDurationCustom = "CUSTOM {0}"
+    override val waveShapeTitle = "waveform"
+    override val frequency = "frequency"
+    override val depth = "depth"
+    override val duration = "duration"
+    override val envelope = "envelope"
+    override val waveBaseOutput = "base output"
+    override val waveModOutput = "mod output"
+    override val waveRemaining = "remaining"
+    override val waveArmedNote = "Takes effect after START CONTROL (no intensity is sent while stopped)."
+
+    // ───────────────────────── ENGINEERING 通用 ─────────────────────────
+    override val engineeringTitle = "ENGINEERING"
+    override val diagnosticConsole = "DIAGNOSTIC CONSOLE"
+    override val tabConnection = "CONNECTION"
+    override val tabMotion = "MOTION"
+    override val tabOutput = "OUTPUT"
+    override val tabDiagnostics = "DIAGNOSTICS"
+
+    // ───────────────────────── ENGINEERING · CONNECTION ─────────────────────────
+    override val linkStatus = "LINK STATUS"
+    override val statusOnline = "ONLINE"
+    override val statusOffline = "OFFLINE"
+    override val statusListening = "LISTENING"
+    override val statusConnected = "CONNECTED"
+    override val statusLatched = "LATCHED"
+    override val statusClear = "CLEAR"
+    override val engineRestartInProgress = "engine restart in progress"
+    override val clientsCount = "{0} client(s)"
+    override val activeSlotValue = "active slot {0}"
+    override val serverEndpoint = "SERVER ENDPOINT"
+    override val bindHost = "bind host"
+    override val bindPort = "bind port"
+    override val relayState = "relay state"
+    override val portFieldLabel = "port (1-65535)"
+    override val restartWillUsePort = "RESTART WILL USE PORT {0}"
+    override val waitingRelayRestart = "WAITING — RELAY RESTART IN PROGRESS"
+    override val sameDevice = "same device"
+    override val multiDevice = "multi device"
+    override val restartRelayTitle = "restart relay"
+    override val restartRelayBody =
+        "Re-binds the V4 relay on this port; armed state is cleared, target id is preserved. " +
+            "0.0.0.0 exposes the relay on the LAN for multi-device pairing."
+    override val appConnectionAddress = "APP CONNECTION ADDRESS"
+    override val targetId = "target id"
+    override val clientUrl = "client url"
+    override val copy = "copy"
+    override val addressLabel = "address"
+    override val pairingCode = "pairing code"
+    override val noPayload = "no payload"
+    override val qrPayloadEmpty = "QR PAYLOAD EMPTY — START THE RELAY FIRST"
+    override val qrGenerationFailed = "QR GENERATION FAILED"
+    override val addressSemanticsTitle = "address semantics"
+    override val addressSemanticsBody =
+        "This URL is what the DG-LAB APP connects to; 0.0.0.0 is a bind host only and is never " +
+            "shown as a client address. Blank = relay not started."
+    override val appClients = "APP CLIENTS"
+    override val clients = "clients"
+    override val activeSlot = "active slot"
+    override val noAppClient = "NO APP CLIENT ATTACHED — WAITING FOR DG-LAB APP"
+    override val moreClients = "+{0} MORE"
+    override val routingTitle = "routing"
+    override val routingBody =
+        "Only the client owning the active slot receives device.op; every APP attach starts a " +
+            "fresh session (registry/slot/estimate/pending reset)."
+    override val devicesTitle = "DEVICES"
+    override val noDeviceSnapshot = "NO DEVICE SNAPSHOT — WAITING FOR APP devices.snapshot"
+    override val deviceDetail = "type={0} · slot={1}"
+    override val linkDiagnostics = "LINK DIAGNOSTICS"
+    override val lastOpReason = "last op reason"
+    override val outboundQueue = "outbound queue"
+    override val droppedOps = "dropped ops"
+    override val lastError = "last error"
+    override val engineErrorLabel = "engine error"
+    override val linkErrorTitle = "link error"
+    override val backpressureTitle = "backpressure"
+    override val backpressureBody =
+        "device.op frames are dropped when the outbound queue is full; emergency/reset/clear " +
+            "frames use the priority path."
+
+    // ───────────────────────── ENGINEERING · MOTION ─────────────────────────
+    override val modelPanelTitle = "MODEL"
+    override val modelFile = "model file"
+    override val modelSession = "model session"
+    override val statusLoaded = "LOADED"
+    override val statusNotLoaded = "NOT LOADED"
+    override val modelSessionDetail = "on-device ONNX Runtime (XNNPACK first, CPU fallback)"
+    override val scalerLabel = "scaler"
+    override val statusValid = "VALID"
+    override val statusInvalid = "INVALID"
+    override val pipelineLabel = "pipeline"
+    override val statusRunning = "RUNNING"
+    override val statusStopped = "STOPPED"
+    override val scalerInvalidTitle = "scaler invalid"
+    override val scalerInvalidBody = "assets/scaler.json is not real training parameters; model output must not be trusted."
+    override val pipelineErrorTitle = "pipeline error"
+    override val stableClassPanel = "STABLE CLASS (MODEL)"
+    override val tagStable = "stable"
+    override val tagAwaiting = "awaiting"
+    override val modelIndex = "model index"
+    override val awaitingValue = "-1 (awaiting)"
+    override val effectiveClassLabel = "effective class"
+    override val mappingSourceLabel = "mapping source"
+    override val manualOverrideActiveTitle = "manual override active"
+    override val manualOverrideActiveBody =
+        "Output uses manual class index {0}; the model stable class above is diagnostic only."
+    override val currentPrediction = "CURRENT PREDICTION"
+    override val predictedClass = "predicted class"
+    override val confidence = "confidence"
+    override val gyroMean = "gyro mean"
+    override val accStd = "acc std"
+    override val windowEnd = "window end"
+    override val windowEndValue = "{0} ms (elapsed)"
+    override val windowNoticeTitle = "window"
+    override val windowNoticeBody =
+        "One inference per 150-frame window (stride 50, ~1s). Confidence is the softmax " +
+            "probability of the predicted class."
+    override val classProbabilities = "CLASS PROBABILITIES (EMA)"
+    override val emaNoticeTitle = "ema"
+    override val emaNoticeBody = "Bars show the probability EMA used by the mapper (probEma={0}), not raw logits."
+    override val classIndexMap = "CLASS INDEX MAP"
+    override val classBaseValue = "{0} · base {1}"
+    override val imuGnssPanel = "IMU / GNSS"
+    override val gyroLabel = "gyro"
+    override val statusAvailable = "AVAILABLE"
+    override val statusMissing = "MISSING"
+    override val gyroMissingDetail = "gyro features degraded; rest override cannot be evaluated"
+    override val rotationVector = "rotation vector"
+    override val rotationMissingDetail = "roll/pitch/yaw derived features forced to 0"
+    override val gnssFix = "gnss fix"
+    override val gnssFixDetail = "everFix={0} · age={1}"
+    override val gnssSpeedLabel = "gnss speed"
+    override val staleSuffix = " (STALE)"
+    override val gpsFixAge = "gps fix age"
+    override val gpsEverFix = "gps ever fix"
+    override val gnssWarningTitle = "gnss warning"
+    override val gnssWarningBody =
+        "Speed features are fed as 0 while GNSS is stale/unavailable; CAR/TRAIN accuracy drops " +
+            "without a fix (AGENTS.md §8)."
+    override val inferencePipeline = "INFERENCE PIPELINE"
+    override val bufferedFrames = "buffered frames"
+    override val lastInference = "last inference"
+    override val predictionAge = "prediction age"
+    override val recognitionLabel = "recognition"
+    override val statusPaused = "PAUSED"
+    override val statusActive = "ACTIVE"
+    override val statusEnabled = "ENABLED"
+    override val statusDisabled = "DISABLED"
+    override val recognitionPausedDetail = "watchdog: >3s without a new prediction; mapping reset, intensity forced to 0"
+    override val restOverrideLabel = "rest override"
+    override val statusInactive = "INACTIVE"
+    override val restRuleTitle = "rest rule"
+    override val restRuleBody =
+        "CAR/CYCLING is forced to STATIONARY when gyroMean < {0} rad/s and accStd < {1} m/s² " +
+            "for {2} window(s). TRAIN is excluded on purpose."
+    override val recognitionPausedTitle = "recognition paused"
+    override val recognitionPausedBody =
+        "No fresh prediction for >3s (screen off / sensor pause). Intensity is forced to 0; " +
+            "a new prediction resumes mapping but does not re-arm."
+
+    // ───────────────────────── ENGINEERING · OUTPUT ─────────────────────────
+    override val waveNotImplementedTitle = "WAVEFORM / FREQUENCY OUTPUT NOT IMPLEMENTED IN THIS BUILD"
+    override val waveNotImplementedBody =
+        "This build sends intensity operations only. No waveform preset, pulse width, " +
+            "frequency, duration or pattern parameter is transmitted to the device."
+    override val supportedOps = "SUPPORTED DEVICE OPERATIONS"
+    override val opAddIntensity = "AddIntensity — relative delta"
+    override val opSetIntensity = "SetIntensity — absolute, only v=0 accepted"
+    override val opClear = "device.op.clear — clear all tasks"
+    override val notSentTitle = "not sent"
+    override val notSentBody =
+        "No waveform / frequency / duration fields exist in this app's protocol layer, " +
+            "so no such controls are provided here."
+    override val channelIntensity = "CHANNEL INTENSITY"
+    override val valueLabel = "value"
+    override val channelA = "CH A"
+    override val channelB = "CH B"
+    override val estimated = "estimated"
+    override val threeValuesTitle = "three different values"
+    override val threeValuesBody =
+        "SENT TARGET = target last sent by the controller. ESTIMATED = controller-side " +
+            "closed-loop estimate (AddIntensity accumulation / APP report override). " +
+            "APP REPORTED = intensity reported by the APP (null = not reported yet); none of " +
+            "them is a BLE-level device acknowledgement."
+    override val mappingTarget = "mapping target"
+    override val appliedSlew = "applied (slew)"
+    override val classBasePanel = "CLASS BASE INTENSITY (0-100)"
+    override val classBaseTitle = "class base"
+    override val classBaseBody =
+        "target = clamp(classBase[controlClass] + manualOffset, 0, safetyMax). " +
+            "Applied and persisted when the slider is released."
+    override val manualOffsetPanel = "MANUAL OFFSET"
+    override val offsetLimitLabel = "offset (±{0})"
+    override val manualOffsetTitle = "manual offset"
+    override val manualOffsetBody =
+        "Added on top of the class base and clamped by safetyMax; it never bypasses safety " +
+            "limits. Applied immediately."
+    override val safetyMaxPanel = "SAFETY MAX"
+    override val safetyLimitLabel = "safety limit"
+    override val safetyLimitBody =
+        "Hard clamp for every mapped target (0-200; ≤80 recommended for comfort). " +
+            "Persisted with the whole mapping config."
+    override val mappingParams = "MAPPING PARAMETERS (READ-ONLY)"
+    override val manualLimit = "manual limit"
+    override val switchWindows = "switch windows"
+    override val probEmaLabel = "prob ema"
+    override val slewUp = "slew up"
+    override val slewDown = "slew down"
+    override val restGyroThr = "rest gyro thr"
+    override val restAccThr = "rest acc thr"
+    override val restWindows = "rest windows"
+    override val restClasses = "rest classes"
+    override val readOnlyTitle = "read-only"
+    override val readOnlyBody =
+        "These mapper coefficients have no edit entry in this build; only class base, " +
+            "manual offset and safety max are adjustable on this page."
+    override val localWavePanel = "LOCAL WAVE (INTENSITY ENVELOPE)"
+    override val enabledLabel = "enabled"
+    override val shapeLabel = "shape"
+    override val sessionLabel = "session"
+    override val statusIdle = "IDLE"
+    override val gainBaseLabel = "gain / base"
+    override val protocolLimitTitle = "protocol limit"
+    override val protocolLimitBody =
+        "V4 provides intensity operations only (t=3 / t=7 v=0 / clear) and cannot switch the " +
+            "DG-LAB APP pulse waveform. The local wave is an intensity envelope layered on the " +
+            "APP waveform; edit it on the OPERATION page."
+
+    // ───────────────────────── ENGINEERING · DIAGNOSTICS ─────────────────────────
+    override val reportExport = "REPORT / EXPORT"
+    override val appVersionLabel = "app version"
+    override val logBuffer = "log buffer"
+    override val linesCount = "{0} lines"
+    override val reportSize = "report size"
+    override val reportReady = "REPORT READY: {0} lines"
+    override val copyLogs = "copy logs"
+    override val clipboard = "clipboard"
+    override val export = "export"
+    override val diagnostics = "diagnostics"
+    override val reportNoticeTitle = "report"
+    override val reportNoticeBody =
+        "DiagnosticsText.build() renders this exact UiState snapshot plus the recent log " +
+            "buffer; EXPORT opens the system share sheet with the same report."
+    override val controlState = "CONTROL STATE"
+    override val armedLabel = "armed"
+    override val phaseLabel = "phase"
+    override val transition = "transition"
+    override val estopUi = "e-stop (ui)"
+    override val estopController = "e-stop (controller)"
+    override val targetApplied = "target / applied"
+    override val startBlockers = "start blockers"
+    override val estopPropagation = "E-STOP PROPAGATION"
+    override val uiLatch = "ui latch"
+    override val controllerLatch = "controller latch"
+    override val framesQueuedLabel = "frames queued"
+    override val appAckedLabel = "app acked"
+    override val appAckedDetail = "APP resp only; see device confirmation below"
+    override val ackReason = "ack reason"
+    override val issuedAt = "issued at"
+    override val deviceUnverifiedTitle = "device confirmation: unverified (no BLE ack channel)"
+    override val deviceUnverifiedBody =
+        "APP resp confirms only that the websocket peer handled the op; BLE execution on the " +
+            "coyote device cannot be confirmed by this app."
+    override val performance = "PERFORMANCE"
+    override val inference = "inference"
+    override val buffer = "buffer"
+    override val unitFrames = "frames"
+    override val dropped = "dropped"
+    override val unitOps = "ops"
+    override val connectionDiagnosticsTitle = "CONNECTION DIAGNOSTICS"
+    override val handshakeCount = "handshake count"
+    override val lastHandshake = "last handshake"
+    override val lastRejectReasonLabel = "last reject reason"
+    override val lastCloseCodeLabel = "last close code"
+    override val lastCloseReasonLabel = "last close reason"
+    override val errorsTitle = "ERRORS ({0})"
+    override val noErrorLines = "NO ERROR LINES IN BUFFER"
+    override val filterTitle = "filter"
+    override val filterBody = "Lines containing '!', 'fail' (case-insensitive) or '错误'."
+    override val recentEventsTitle = "RECENT EVENTS ({0}/{1})"
+    override val noEvents = "NO EVENTS RECORDED YET"
+    override val orderTitle = "order"
+    override val orderBody = "Newest first; up to 40 lines from the in-memory service / relay log buffer."
+
+    // ───────────────────────── 界面语言 ─────────────────────────
+    override val languagePanelTitle = "INTERFACE LANGUAGE"
+    override val languageOptionSystem = "SYSTEM"
+    override val languageOptionChinese = "中文"
+    override val languageOptionEnglish = "ENGLISH"
+    override val languageNote =
+        "Changes apply immediately and are saved; SYSTEM shows 中文 when the device language " +
+            "is Chinese, ENGLISH otherwise."
+}

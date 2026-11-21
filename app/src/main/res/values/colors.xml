@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- POLAR BLUE：深海蓝背景 + 冰蓝强调（与 Compose McColors 保持一致） -->
+    <color name="mc_background">#FF203348</color>
+</resources>

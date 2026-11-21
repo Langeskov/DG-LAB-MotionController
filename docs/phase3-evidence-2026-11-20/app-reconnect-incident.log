@@ -1,0 +1,45 @@
+# 「偶发无法连接」事件时间线（2026-11-20，DG-LAB APP 侧 logcat）
+
+现象：用户看到 DG-LAB APP 弹窗「连接失败 — 该二维码/服务器地址连接失败，请重新扫描二维码或输入
+正确的服务器地址」，界面停在 Socket 控制页，需要手动再点一次才能连上。
+
+当时环境：MotionController 刚执行 `adb install -r` 重装并冷启动（22:27:43 安装、22:27:46 启动），
+随后切到 DG-LAB APP（本 App 退到后台）。V4 relay 监听 127.0.0.1:9998，targetId 未变（32b5349c）。
+
+## DG-LAB APP（PID 15831）原始日志
+
+22:28:19.994 E/webconsole: │ 1: [WARN] [LocalSocketTransportV4] connection timed out
+22:28:21.730 E/webconsole: │ 1: [INFO] [LocalSocketTransportV4] connecting to ws://127.0.0.1:9998/?tid=32b5349c
+22:28:21.738 E/webconsole: │ 1: [ERROR] [LocalSocketTransportV4] connection error 请求被拒绝，当前已经在做。。。。。
+22:28:24.997 E/ws2: │ onFailure - id = socket_v4, java.net.SocketTimeoutException: timeout, null
+
+## MotionController 侧同时刻观察
+
+- relay 监听存在（ss 显示 [::ffff:127.0.0.1]:9998 LISTEN）。
+- 22:28:31 仍在 `CLOSE-WAIT 236`：已 accept、收到 236 字节 HTTP Upgrade 请求，但应用未读取/未处理。
+- 该连接在客户端超时关闭后仍挂起；直到 22:29:19.735（用户重新把本 App 切到前台时）才被处理：
+  22:29:19.735 I/V4: WS 握手 UA=okhttp/3.14.9 Connection=Upgrade; close
+  22:29:19.779 I/V4: APP 接入 clientId=e6faf4dc targetId=32b5349c 总数=1
+  22:29:19.787 I/V4: APP 断开 clientId=e6faf4dc code=1006 reason=- remote=true
+  （即：服务端处理的是已被客户端放弃的旧连接，握手完成后立即 1006）
+- 恢复前台后，再次手动连接成功（22:32:14，8ms 完成 101 握手；见 real-device-v4-logcat.log §7）。
+
+## 结论
+
+1. 协议/握手实现本身正常：真实 APP 的 OkHttp 3.14.9 握手在 relay 可用时 6–8ms 完成 101，
+   服务端日志 `UA=okhttp/3.14.9 Connection=Upgrade; close` 与 §3.2 的握手头修复一致。
+2. 这次「连接失败」的直接原因是 DG-LAB APP 的 V4 transport 在第一次连接尝试超时后，
+   把后续重试挡在本地状态机里（其自身日志：`请求被拒绝，当前已经在做`），于是不再到达 relay；
+   APP 不会自动重连，用户必须手动「重新连接/连接服务器」。
+3. 首次尝试超时的诱因是当时 MotionController 进程对 loopback 连接的响应出现了一次约 58s 的停顿
+   （请求已 accept 但 58s 未读取，且正好在本 App 重新回到前台时恢复处理）。该停顿只在
+   “APK 重装/冷启动后立即退到后台”窗口出现一次，随后 45 次探针（含后台状态）全部 57–97ms 完成
+   握手，未能复现；未发现 ANR、未发现崩溃、进程状态为 foreground-service（curProcState=4、cached=false）。
+   倾向为系统级后台调度/初始化停顿（MIUI 对刚安装应用的冻结/限流或 ART 初始化），而不是 V4 协议缺陷。
+4. 实际影响与规避：
+   - 用户侧：出现「连接失败」时点「重新连接」（或重启 DG-LAB APP）即可；尽量避免在
+     MotionController 刚安装/刚启动的几秒内去连 Socket。
+   - 工程侧：保持 targetId 持久化（已实现）；relay 端口固定 9998 + 绑定重试（已实现）；
+     不建议为规避此问题把 relay 换成前台可见页面或常驻 wakelock（安全/功耗代价大）。
+   - 若后续仍频繁出现，下一步应加“relay 响应自检”诊断（每 5s 由后台写线程做一次 loopback
+     握手自检并记录延迟），并在 MIUI 上把本 App 加入「无限制/自启动」白名单后复测。
